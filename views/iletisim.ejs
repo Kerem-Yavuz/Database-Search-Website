@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('sayfalar/header', { title: 'Şehir Listesi' }) %>
+        <title>İletisim Sayfası</title>
+        <link href="/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <h1>İletişime Geçin</h1>
+    
+    <form action="/send" method="POST">
+        <div class="form-group-container">
+
+            <div class="form-group">
+                <label for="isim">İsim:</label>
+                <input id="isim" name="isim" class="form-input" placeholder="İsim" type="text" />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input id="email" name="email" class="form-input" placeholder="E-Mail" type="email" />
+            </div>
+
+            <div class="form-group">
+                <label for="telefon">Telefon:</label>
+                <input id="telefon" name="telefon" class="form-input" placeholder="0512 345 6789" type="text" />
+            </div>
+
+            <div class="form-group">
+                <label for="mesaj">Mesaj:</label>
+                <textarea class="form-textarea" id="mesaj" name="mesaj" placeholder="Mesaj"></textarea>
+            </div>
+
+        </div>
+        <button class="form-submit" type="submit">Gönder</button>
+    </form>
+</body>
+
+</html>
