@@ -9,5 +9,5 @@ If you are gonna use your own DB make sure to change names of the columns, table
 
 ABOUT CONTACT PAGE:
  
-I have added "contact.sql" for contact page table so after you created the table create "contact" table so that you can use the "iletisim" page 
+I have added "contact.sql" for contact page table so after you created the database, create "contact" table so that you can use the "iletisim" page 
 If you are gonna use your own contact table make sure the change the "req.query"s in /index.js:84 
