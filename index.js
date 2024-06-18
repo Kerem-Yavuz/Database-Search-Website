@@ -6,11 +6,11 @@ var path = require('path');
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname,"/public")));
 
-var con = mysql.createConnection({
+var con = mysql.createConnection({//mysql connections
     host: "localhost",
     user: "kerem",
-    password: "000000",
-    database: "dbSearchCity",
+    password: "313131",
+    database: "webfinal",
     port: 3306
     });
 
@@ -19,19 +19,16 @@ con.connect(function(err) {
         console.log("Connected to MySQL database!");
     });
 
-    app.get("/anasayfa", (req,res) => {
+    app.get("/anasayfa", (req,res) => { //gets all values from data for /anasayfa
         let  query = 'SELECT id, sehir_adi FROM sehirler';
         con.query(query, function (err, datas) {
             res.render('index', { data: datas });
         });
     });
 
-    app.get("/iletisim", (req,res) => {
-        
-        res.render('iletisim');
-    });
+    
 
-    app.get("/anasayfa/arama", (req, res) => {
+    app.get("/anasayfa/arama", (req, res) => { // gets values for given queries
         const nesne = {
             kosul: req.query.kosul,
             aramaturu: req.query.aramaturu,
@@ -46,8 +43,6 @@ con.connect(function(err) {
         } else if (nesne.aramaturu === "sehir_adi") {
             query = 'SELECT id, sehir_adi FROM sehirler WHERE sehir_adi LIKE ?';
             values = [`%${nesne.kosul}%`];
-        } else {
-            return res.status(400).send('Invalid search type.');
         }
     
         con.query(query, values, function (err, datas) {
@@ -58,8 +53,42 @@ con.connect(function(err) {
         });
     });
 
+
+
+    app.get("/iletisim", (req,res) => {
+        
+        res.render('iletisim');
+    });
+
+    
+    
+
+
+    app.get("/iletisim/send", (req, res) => { //sends values to database
+        const contact = {
+            contact_name: req.query.name,
+            contact_email: req.query.email,
+            contact_phone: req.query.phone,
+            contact_message: req.query.message,
+        };
+    
+        let query = 'INSERT INTO `contact` (`phone`, `contact_name`, `contact_email`, `message`) VALUES (?, ?, ?, ?)';
+        let values = [contact.contact_phone, contact.contact_name, contact.contact_email, contact.contact_message];
+    
+
+        con.query(query, values, function (err, result) {
+            if (err) {
+                console.error("Database query error: ", err);
+                return res.status(500).send("Database error occurred.");
+            }
+            res.render('iletisim'); 
+        });
+    });
+    
+
+
     app.get('/', (req, res) => {
-        // Redirect to /anasayfa
+        
         res.redirect('/anasayfa');
       });
 

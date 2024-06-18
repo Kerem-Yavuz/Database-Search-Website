@@ -10,12 +10,12 @@
 <body>
     <h1>İletişime Geçin</h1>
     
-    <form action="/send" method="POST">
+    <form action="/iletisim/send" method="GET">
         <div class="form-group-container">
 
             <div class="form-group">
-                <label for="isim">İsim:</label>
-                <input id="isim" name="isim" class="form-input" placeholder="İsim" type="text" />
+                <label for="name">İsim:</label>
+                <input id="name" name="name" class="form-input" placeholder="İsim" type="text" />
             </div>
 
             <div class="form-group">
@@ -24,17 +24,17 @@
             </div>
 
             <div class="form-group">
-                <label for="telefon">Telefon:</label>
-                <input id="telefon" name="telefon" class="form-input" placeholder="0512 345 6789" type="text" />
+                <label for="phone">Telefon:</label>
+                <input id="phone" name="phone" class="form-input" placeholder="0512 345 6789" type="text" />
             </div>
 
             <div class="form-group">
-                <label for="mesaj">Mesaj:</label>
-                <textarea class="form-textarea" id="mesaj" name="mesaj" placeholder="Mesaj"></textarea>
+                <label for="message">Mesaj:</label>
+                <textarea class="form-textarea" id="message" name="message" placeholder="Mesaj"></textarea>
             </div>
 
         </div>
-        <button class="form-submit" type="submit">Gönder</button>
+        <button class="form-submit" value="Ara" type="submit">Gönder</button>
     </form>
 </body>
 
