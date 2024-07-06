@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 
 <head>
     <%- include('sayfalar/header', { title: 'Şehir Listesi' }) %>
@@ -10,17 +10,17 @@
 <body>
     <h1>İletişime Geçin</h1>
     
-    <form action="/iletisim/send" method="GET">
+    <form action="/iletisim/send"  method="GET">
         <div class="form-group-container">
 
             <div class="form-group">
-                <label for="name">İsim:</label>
-                <input id="name" name="name" class="form-input" placeholder="İsim" type="text" />
+                <label for="name">İsim*:</label>
+                <input id="name" name="name" class="form-input" placeholder="İsim" type="text" required />
             </div>
 
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input id="email" name="email" class="form-input" placeholder="E-Mail" type="email" />
+                <label for="email">E-posta*:</label>
+                <input id="email" name="email" class="form-input" placeholder="yourmail@mail.com" type="email" required/>
             </div>
 
             <div class="form-group">
@@ -29,13 +29,14 @@
             </div>
 
             <div class="form-group">
-                <label for="message">Mesaj:</label>
-                <textarea class="form-textarea" id="message" name="message" placeholder="Mesaj"></textarea>
+                <label for="message">Mesaj*:</label>
+                <textarea class="form-textarea" id="message" name="message" placeholder="Mesaj" required></textarea>
             </div>
 
         </div>
         <button class="form-submit" value="Ara" type="submit">Gönder</button>
     </form>
+
 </body>
 
 </html>

@@ -2,9 +2,11 @@ var mysql = require('mysql');
 var express = require("express");
 var app = express();
 var path = require('path');
+const notifier = require('node-notifier');
 
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname,"/public")));
+
 
 var con = mysql.createConnection({//mysql connections
     host: "localhost",
@@ -40,7 +42,8 @@ con.connect(function(err) {
         if (nesne.aramaturu === "id") {
             query = 'SELECT id, sehir_adi FROM sehirler WHERE id LIKE ?';
             values = [`%${nesne.kosul}%`];
-        } else if (nesne.aramaturu === "sehir_adi") {
+        } 
+        else if (nesne.aramaturu === "sehir_adi") {
             query = 'SELECT id, sehir_adi FROM sehirler WHERE sehir_adi LIKE ?';
             values = [`%${nesne.kosul}%`];
         }
@@ -81,6 +84,14 @@ con.connect(function(err) {
                 console.error("Database query error: ", err);
                 return res.status(500).send("Database error occurred.");
             }
+            notifier.notify({
+                title: 'Website',
+                message: 'Your Send Successfully!!',
+                icon: path.join(__dirname, 'images/website.png'),
+                sound: true,
+                wait: true
+              });
+            console.log("message send");
             res.render('iletisim'); 
         });
     });
