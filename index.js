@@ -86,7 +86,7 @@ con.connect(function(err) {
             }
             notifier.notify({
                 title: 'Website',
-                message: 'Your Send Successfully!!',
+                message: 'Your Message Send Successfully!!',
                 icon: path.join(__dirname, 'images/website.png'),
                 sound: true,
                 wait: true
